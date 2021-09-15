@@ -16,19 +16,19 @@ Phishing is a form of cybercrime in which a target is contacted via email, telep
 
 The following sections are supported by the respective numbered Jupyter Notebooks:
 
-### [01: Data Collection & Cleaning](https://git.generalassemb.ly/ksylvia16/submissions_614/blob/master/Projects/project_3/code/01_Data_Collection%20%26%20Cleaning.ipynb)
+### [01: Data Collection & Cleaning](https://github.com/ksylvia16/Phishing-URL-Detection/blob/fcb3072ea80edf49a117722be3d80ee97c098707/code/01_Data_Collection_%26_Cleaning.ipynb)
 
 This project initially used just one dataset of 96,005 URLs-- about 50% legitimate URLs and 50% phishing URLs. While the model created was able to perform with an 91% accuracy on the testing data, model deployment seemed to have its own pitfalls. Simple websites such as www.google.com were classified as phishing. When taking a closer look at our dataset, it was evident that legitimate URL samples did not include short, simple URLs. An additional dataset is merged with the original to improve our model upon deployment. Phishing URLs were pulled from websites such as PhishTank and OpenPhish and legitimate URLs were pulled from websites such as Alexa and Common Crawl. 
 
 Data cleaning included dropping null values (URLs that did not distinguish if legitimate or phishing), dropping unnecessary columns, changing dtypes, and adding a protocol to URLs without one. One dataset does not include a protocol (such as 'http://') in the provided URLs. In order for a future use of urlparse to work efficiently on the concatenated DataFrame, all URLs must include a protocol. It is important to note that features extracted from the protocol were not used in the model, but simply aided in the split of different URL parts. After combining the two DataFrames, duplicate URLs were dropped. A total of 545,895 instances were used.
 
 
-### [02: Pre-Processing](https://git.generalassemb.ly/ksylvia16/submissions_614/blob/master/Projects/project_3/code/02_EDA_%26_Pre-Processing.ipynb)
+### [02: Pre-Processing](https://github.com/ksylvia16/Phishing-URL-Detection/blob/fcb3072ea80edf49a117722be3d80ee97c098707/code/02_Pre-Processing.ipynb)
 
 Feature engineering was a significant part of the Pre-Processing step. Using a function from urllib library, protocol, domain, path, query, and fragment were extracted from the URL and respective columns were created. The protocol column was dropped as more sophisticated phishing URLs are created with a protocol of https://. This can be misleading as the website is not, in fact, secure. Protocol was emitted from the model to prevent bias towards the different protocols. Length of URL, domain, path, query, and fragment are extracted as well as the quantity of specific characters in each part of the URL.
 
 
-### [03: Model Selection and Evaluation](https://git.generalassemb.ly/ksylvia16/submissions_614/blob/master/Projects/project_3/code/02_EDA_%26_Pre-Processing.ipynb)
+### [03: Model Selection and Evaluation](https://github.com/ksylvia16/Phishing-URL-Detection/blob/fcb3072ea80edf49a117722be3d80ee97c098707/code/03_Model_Selection_%26_Evaluation.ipynb)
 
 First, we divide our data into a Train and Test vector to begin modeling. Nine models were examined:
 
@@ -44,7 +44,7 @@ First, we divide our data into a Train and Test vector to begin modeling. Nine m
 
 Once the best model was determined, hyperparameter tuning using `GridSearchCV` and `RandomizedSearchCV` continued to optimize our final model. Random Forest Classifier performed best with a 94.5% testing score.
 
-### [Model Deployment - Streamlit Application](cjkncjanc)
+### [Model Deployment - Streamlit Application](https://github.com/ksylvia16/Phishing-URL-Detection/blob/fcb3072ea80edf49a117722be3d80ee97c098707/code/app.py)
 
 Finally, the model is deployed through a Streamlit application. The application is designed for any individual to enter a URL, press a button, and the model will predict if the URL is a phishing or legitimate URL.
 
